@@ -45,7 +45,7 @@ sensor-app$ uvicorn sensor_service.main:app --reload
 <br>
 <br>
 
-# Testing of the app
+# Using the app
 - You can use postman to test the functionality of the app.
 - Use **http://127.0.0.1:8000/api/v1** as the base url for the app.
 - Use **/sensors** endpoint to post sensor data into the app. This endpoint will be used by various sensors to send data. Following are the expected request body fields:
@@ -64,5 +64,20 @@ sensor-app$ uvicorn sensor_service.main:app --reload
 3. start_time -> datetime (Required)
 4. end_time -> datetime (Required)
 - Use **/metrics/combined_stats/{metric}** to retrieve statistics for the given metric type. The type should be within supported metric types (temperature, humidity, wind_speed).
+
+<br>
+<br>
+
+# Testing
+- Tests are implemented using pytest.
+- To test api endpoint for POST and db logic run:
+```bash
+sensor-app$ pytest sensor_service/tests/sensor_collect_tests.py
+```
+- To test db logic for metric retrieval run:
+```bash
+sensor-app$ pytest sensor_service/tests/metric_retrieval_tests.py
+```
+
 
 
