@@ -2,7 +2,6 @@ from datetime import datetime
 import pytest
 from sensor_service.models.metrics import MetricModel
 
-
 @pytest.mark.asyncio
 async def test_post_api(async_client):   
     response = await async_client.post("/sensors/", json={

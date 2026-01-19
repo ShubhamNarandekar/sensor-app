@@ -18,6 +18,7 @@ async def getSensors(sensor_ids: list[str] = Query(None, description="Get sensor
     data = await MetricDataRetriever.sensorData(sensor_ids, start_time, end_time, metrics, db)
     return jsonable_encoder(data)
 
+
 @router.get("/combined_stats/{metric}")
 async def getMetricsStats(metric: str, db: AsyncSession = Depends(get_db)):
     """
@@ -25,9 +26,3 @@ async def getMetricsStats(metric: str, db: AsyncSession = Depends(get_db)):
     """
     data = await MetricDataRetriever.metricStats(metric, db)
     return jsonable_encoder(data)
-
-# As the /combined_stats api gives the average as well so no need to have separate api for average
-# @router.get("/{metric}")
-# async def getMetrics(metric: list[str]):
-#     data = MetricDataRetriever.metricAverage(metric)
-#     return data

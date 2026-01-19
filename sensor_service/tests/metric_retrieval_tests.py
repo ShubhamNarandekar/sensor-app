@@ -2,7 +2,6 @@ from datetime import datetime
 import pytest
 from sensor_service.models.metrics import MetricModel
 from sqlalchemy import select, func
-from fastapi.encoders import jsonable_encoder
 
 @pytest.mark.asyncio
 async def test_data_retrieval(db_session):

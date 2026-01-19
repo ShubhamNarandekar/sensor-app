@@ -15,9 +15,9 @@ async def async_client():
 async def db_session():
     db_engine = create_async_engine(
         settings.db_connection,
-        echo=True,          # set False in prod
-        pool_size=10,
-        max_overflow=20
+        echo=True,
+        pool_size=5,
+        max_overflow=10
     )
 
     AsyncSessionTest = sessionmaker(

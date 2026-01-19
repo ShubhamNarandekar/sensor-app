@@ -8,6 +8,7 @@ class Metric(BaseModel):
     humidity: float | None
     timestamp: datetime = Field(default_factory=datetime.now)
 
+    # Validating the sensor_id field to have a fixed prefix for sensor ids
     @field_validator("sensor_id")
     @classmethod
     def validate_sensor_id(cls, input: str):

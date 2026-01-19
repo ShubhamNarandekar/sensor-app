@@ -7,13 +7,10 @@ from sqlalchemy import text
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Startup
+    # Load sample data on app startup
     await load_data_from_json()
-
     yield
-
-    # Shutdown
-    await db_engine.dispose()
+    # We can do any cleanups at this point
 
 app = FastAPI(
     title="Sensor Data Service",

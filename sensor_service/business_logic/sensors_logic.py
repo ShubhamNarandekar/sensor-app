@@ -5,6 +5,7 @@ from fastapi import HTTPException
 
 class SensorDataCollector():
     async def collect_data(metric: Metric, db):
+        # convert the input to a Metric Model
         data = MetricModel(timestamp=metric.timestamp, 
                            sensor_id=metric.sensor_id, 
                            temperature=metric.temperature, 

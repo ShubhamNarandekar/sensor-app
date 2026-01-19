@@ -34,11 +34,11 @@ async def load_data_from_json():
         # Check if data already exists
         result = await session.execute(select(MetricModel))
         if result.scalars().first() is not None:
-            print("Data already exists, skipping JSON load")
+            print("Data already exists, skipping loading of data")
             return
 
         if not data_file.exists():
-            print(f"JSON file {data_file} not found, skipping load")
+            print(f"JSON file {data_file} not found, skipping loading of data")
             return
 
         with open(data_file, "r") as f:

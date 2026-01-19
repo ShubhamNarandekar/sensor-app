@@ -11,9 +11,12 @@ class MetricDataRetriever:
             "humidity": MetricModel.humidity,
             "wind_speed": MetricModel.wind_speed,
         }
+
+        # Take metrics types from query params or include all types if not specified
         selected_metrics = metrics or list(map_columns.keys())
         aggregates = [func.avg(map_columns[m]).label(m) for m in selected_metrics]
 
+        # Query result for list of sensor ids specified in the query params
         if sensor_ids:
             query = (select(MetricModel.sensor_id,  
                     *aggregates)
@@ -22,6 +25,7 @@ class MetricDataRetriever:
                     .where(MetricModel.timestamp <= end_time)
                     .group_by(MetricModel.sensor_id)
                     .order_by(MetricModel.sensor_id))
+        # Query result for all sensor ids if no list is specified in query params
         else:
             query = (select(MetricModel.sensor_id,
                     *aggregates)
@@ -47,6 +51,7 @@ class MetricDataRetriever:
             "wind_speed": MetricModel.wind_speed,
         }
 
+        # Query result for specified metric types, all if not specified
         try:
             column = map_columns[metrics]
         except KeyError:

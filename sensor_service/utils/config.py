@@ -6,5 +6,6 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(
         env_file=".env",)
 
+# This object can then be used in other files to access the env vars from .env file
 settings = Settings()
 
