@@ -8,8 +8,6 @@ from sqlalchemy import text
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     # Startup
-    async with db_engine.begin() as conn:
-        await conn.execute(text("SELECT 1"))
     await load_data_from_json()
 
     yield

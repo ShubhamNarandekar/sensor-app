@@ -1,4 +1,3 @@
-import asyncio
 from datetime import datetime
 import json
 from pathlib import Path
@@ -6,11 +5,11 @@ from sqlalchemy import select, text
 from sensor_service.utils.database import AsyncSessionLocal, db_engine
 from sensor_service.models.metrics import Base, MetricModel
 
-DATA_FILE = Path("sensor_service/sample_data/sample_data.json")
+data_file = Path("sensor_service/sample_data/sample_data.json")
 
 async def load_data_from_json():
-    if not DATA_FILE.exists():
-        print(f"⚠️ {DATA_FILE} not found, skipping load")
+    if not data_file.exists():
+        print(f"{data_file} not found, skipping load")
         return
 
     async with db_engine.begin() as conn:
@@ -38,11 +37,11 @@ async def load_data_from_json():
             print("Data already exists, skipping JSON load")
             return
 
-        if not DATA_FILE.exists():
-            print(f"JSON file {DATA_FILE} not found, skipping load")
+        if not data_file.exists():
+            print(f"JSON file {data_file} not found, skipping load")
             return
 
-        with open(DATA_FILE, "r") as f:
+        with open(data_file, "r") as f:
             records = json.load(f)
 
         sensor_objects = []
@@ -60,9 +59,4 @@ async def load_data_from_json():
 
         session.add_all(sensor_objects)
         await session.commit()
-
         print(f"Loaded {len(sensor_objects)} rows from JSON")
-
-
-if __name__ == "__main__":
-    asyncio.run(load_data_from_json())

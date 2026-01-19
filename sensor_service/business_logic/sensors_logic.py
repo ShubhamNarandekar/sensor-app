@@ -16,7 +16,7 @@ class SensorDataCollector():
             await db.refresh(data)
             return data
         except IntegrityError:
-            await db.rollback()  # rollback transaction on error
+            await db.rollback()
             raise HTTPException(status_code=400, detail="Item with this name already exists.")
         except SQLAlchemyError:
             await db.rollback()

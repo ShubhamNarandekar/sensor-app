@@ -4,7 +4,7 @@ from sensor_service.utils.config import settings
 
 db_engine = create_async_engine(
     settings.db_connection,
-    echo=True,          # set False in prod
+    echo=True,
     pool_size=10,
     max_overflow=20
 )

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
 
 class Metric(BaseModel):
@@ -8,7 +8,9 @@ class Metric(BaseModel):
     humidity: float | None
     timestamp: datetime = Field(default_factory=datetime.now)
 
-
-class ResponseData(BaseModel):
-    sensor_id: str
-    metrics: dict
+    @field_validator("sensor_id")
+    @classmethod
+    def validate_sensor_id(cls, input: str):
+        if not input.startswith("sensor_"):
+            raise ValueError('sensor_id must start with "sensor_"')
+        return input

@@ -4,7 +4,6 @@ from sqlalchemy import select, func
 from fastapi import HTTPException
 
 class MetricDataRetriever:
-    
     async def sensorData(sensor_ids=None, start_time=None, end_time=None, metrics=None, db=None):
         query = None
         map_columns = {
