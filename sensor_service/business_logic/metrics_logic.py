@@ -51,7 +51,7 @@ class MetricDataRetriever:
             "wind_speed": MetricModel.wind_speed,
         }
 
-        # Query result for specified metric types, all if not specified
+        # Query result for specified metric type
         try:
             column = map_columns[metrics]
         except KeyError:

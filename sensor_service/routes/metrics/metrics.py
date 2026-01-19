@@ -8,8 +8,8 @@ router = APIRouter()
 
 @router.get("/")
 async def getSensors(sensor_ids: list[str] = Query(None, description="Get sensor data from one or more sensors"),
-                     start_time: datetime = Query(None, description="Start date from which you want the data to be"),
-                     end_time: datetime = Query(None, description="End date till which you want the data to be"),
+                     start_time: datetime = Query(..., description="Start date from which you want the data to be"),
+                     end_time: datetime = Query(..., description="End date till which you want the data to be"),
                      metrics: list[str] = Query(..., description="Type of metric to retrieve"),
                      db: AsyncSession = Depends(get_db)):
     """
