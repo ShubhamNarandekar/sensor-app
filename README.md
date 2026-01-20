@@ -31,13 +31,17 @@ $ cd sensor-app
 ```bash
 sensor-app$ python3 -m venv .venv
 ```
+- Activate the environment
+```bash
+sensor-app$ source .venv/bin/activate
+```
 - Install required packages
 ```bash
-sensor-app$ pip install -r requirements.txt 
+(.venv) sensor-app$ pip install -r requirements.txt 
 ```
 - Run the app
 ```bash
-sensor-app$ uvicorn sensor_service.main:app --reload
+(.venv) sensor-app$ uvicorn sensor_service.main:app --reload
 ```
 - On app startup, sample data will be loaded into the database. If needed, you can modify the data values in **sensor-app/sample_data/sample_data.json**
 
