@@ -76,11 +76,11 @@ sensor-app$ source .venv/bin/activate
 - Tests are implemented using pytest.
 - To test api endpoint for POST and db logic run:
 ```bash
-sensor-app$ pytest sensor_service/tests/sensor_collect_tests.py
+(.venv) sensor-app$ pytest sensor_service/tests/sensor_collect_tests.py
 ```
 - To test db logic for metric retrieval run:
 ```bash
-sensor-app$ pytest sensor_service/tests/metric_retrieval_tests.py
+(.venv) sensor-app$ pytest sensor_service/tests/metric_retrieval_tests.py
 ```
 
 
